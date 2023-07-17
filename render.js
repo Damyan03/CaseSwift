@@ -325,6 +325,7 @@ function parseCSV(csv) {
             newRow.push(entry);
         }
 
+        
         result.push(newRow);
     }
 

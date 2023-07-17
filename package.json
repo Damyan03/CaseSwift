@@ -7,7 +7,8 @@
     "dev": "npx tailwindcss -i ./input.css -o ./output.css --watch",
     "build": "npx tailwindcss -i ./input.css -o ./output.css",
     "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "buildElectron": "electron-packager . --overwrite --platform=win32 --arch=x64 --prune=true --out=release-builds"
   },
   "author": "Damyan03",
   "license": "MIT",
