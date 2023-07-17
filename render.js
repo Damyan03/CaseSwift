@@ -10,6 +10,8 @@ document.getElementById('send-email').addEventListener('click', function () {
             const signitureName = document.getElementById('signiture').value;
             let subject = null;
             const emailData = getEmailData();
+            const ccEmailData = getCCEmailData().join('; ');
+            console.log(ccEmailData);
             Object.entries(csvData).forEach(([worker, cases]) => {
                 if (worker.length === 0) {
                     document.getElementById('status').classList = "text-red-400 text-center visible"
@@ -43,6 +45,7 @@ document.getElementById('send-email').addEventListener('click', function () {
                     const data = {
                         email: email.domain,
                         subject: subject,
+                        ccEmail: ccEmailData,
                         html: `
                         <style>
                             table {
@@ -93,6 +96,32 @@ document.getElementById('add-email').addEventListener('click', function () {
     createEmail();
 });
 
+document.getElementById('add-email-cc').addEventListener('click', function () {
+    createEmailCC();
+});
+
+function createEmailCC(domain = ''){
+    const ccEmailContainer = document.getElementById('ccEmails');
+    const ccEmail = document.createElement('div');
+    ccEmail.className = 'bg-gray-600 flex justify-start items-center h-10 center p-2 gap-2 w-full rounded';
+    ccEmailContainer.appendChild(ccEmail);
+
+    const ccEmailName = document.createElement('input');
+    ccEmailName.className = 'bg-gray-700 w-full text-gray-300';
+    ccEmailName.placeholder = 'domain';
+    ccEmailName.type = 'text';
+    ccEmailName.value = domain;
+    ccEmail.appendChild(ccEmailName);
+
+    const deleteButton = document.createElement('button');
+    deleteButton.className = 'bg-red-500 hover:bg-red-700 text-white font-bold m-2 px-4 rounded';
+    deleteButton.innerHTML = 'X';
+    deleteButton.addEventListener('click', function () {
+        ccEmail.remove();
+    });
+    ccEmail.appendChild(deleteButton);
+}
+
 // Create email input fields dynamically
 function createEmail(user = '', domain = '') {
     const emailContainer = document.getElementById('emails');
@@ -131,6 +160,7 @@ function createEmail(user = '', domain = '') {
 // Load data from storage
 function loadData(data) {
     const storedEmails = data.emails;
+    const storedCCEmails = data.ccEmails;
     const storedSigniture = data.signiture;
     let arrayEmails = [];
 
@@ -138,6 +168,12 @@ function loadData(data) {
         storedEmails.forEach(email => {
             createEmail(email.name, email.domain);
             arrayEmails.push(email);
+        });
+    }
+
+    if (storedCCEmails && Array.isArray(storedCCEmails)) {
+        storedCCEmails.forEach(ccEmail => {
+            createEmailCC(ccEmail);
         });
     }
 
@@ -152,6 +188,14 @@ document.getElementById('update-emails').addEventListener('click', function () {
     ipcRenderer.invoke('update-emails', arrayEmails)
         .then(response => {
             console.log(response);  // Here you can handle the response
+            const saveStatus = document.createElement('p');
+            saveStatus.innerHTML = "* Emails saved successfully";
+            document.getElementById('save-status').appendChild(saveStatus);
+
+            // Remove the element after the animation completes
+            setTimeout(() => {
+                saveStatus.remove();
+            }, 5000);  // Wait for 5 seconds before removing the element
         });
 });
 
@@ -170,6 +214,21 @@ function getEmailData() {
         }
     });
     return arrayEmails;
+}
+
+// Get email data from input fields
+function getCCEmailData() {
+    let ccEmails = document.querySelectorAll('#ccEmails > div');
+    let arrayCCEmails = [];
+
+    ccEmails.forEach(ccEmail => {
+        let domainInput = ccEmail.querySelector('input:nth-child(1)');
+        let domain = domainInput.value;
+        if (domain) {
+            arrayCCEmails.push(domain);
+        }
+    });
+    return arrayCCEmails;
 }
 
 // Group data by worker
@@ -282,10 +341,32 @@ window.onload = function () {
 // Save info button click event listener
 document.getElementById('save-info').addEventListener('click', function () {
     const signiture = document.getElementById('signiture').value;
+    const arrayCCEmails = getCCEmailData();
+    ipcRenderer.invoke('update-cc-emails', arrayCCEmails)
+        .then(response => {
+            console.log(response);  // Here you can handle the response
+            const saveStatus = document.createElement('p');
+            saveStatus.innerHTML = "* CC-Emails saved successfully";
+            document.getElementById('save-status').appendChild(saveStatus);
+
+            // Remove the element after the animation completes
+            setTimeout(() => {
+                saveStatus.remove();
+            }, 5000);  // Wait for 5 seconds before removing the element
+        }
+    );
 
     ipcRenderer.invoke('update-signiture', signiture)
         .then(response => {
             console.log(response);  // Here you can handle the response
+            const saveStatus = document.createElement('p');
+            saveStatus.innerHTML = "* Signiture saved successfully";
+            document.getElementById('save-status').appendChild(saveStatus);
+
+            // Remove the element after the animation completes
+            setTimeout(() => {
+                saveStatus.remove();
+            }, 5000);  // Wait for 5 seconds before removing the element
         }
-        );
+    );
 });

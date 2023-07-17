@@ -5,6 +5,10 @@
 .center {
     @apply flex justify-center items-center;
 }
-.height-max{
+.height-max-email{
     max-height: calc(100vh - 160px); /* 100px to match whatever offsets you might need for headers etc */
+}
+
+.height-max-email-cc{
+    max-height: calc(100vh - 490px); /* 100px to match whatever offsets you might need for headers etc */
 }

@@ -81,38 +81,6 @@ ipcMain.handle('get-data' , (event) => {
     }
 });
 
-// Handle the 'update-password' IPC event
-ipcMain.handle('update-password', (event, password) => {
-    try {
-        // Update the 'password' property in the storage object
-        storage.password = password;
-
-        // Write the updated storage object to the storage file
-        fs.writeFileSync(storageFile, JSON.stringify(storage));
-
-        return "Password updated successfully";
-    } catch (error) {
-        console.error(error);
-        throw error;
-    }
-});
-
-// Handle the 'update-username' IPC event
-ipcMain.handle('update-username', (event, username) => {
-    try {
-        // Update the 'username' property in the storage object
-        storage.username = username;
-
-        // Write the updated storage object to the storage file
-        fs.writeFileSync(storageFile, JSON.stringify(storage));
-
-        return "Username updated successfully";
-    } catch (error) {
-        console.error(error);
-        throw error;
-    }
-});
-
 // Handle the 'update-signiture' IPC event
 ipcMain.handle('update-signiture', (event, signiture) => {
     try {
@@ -123,6 +91,21 @@ ipcMain.handle('update-signiture', (event, signiture) => {
         fs.writeFileSync(storageFile, JSON.stringify(storage));
 
         return "Signiture updated successfully";
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+});
+
+ipcMain.handle('update-cc-emails', (event, ccEmails) => {
+    try {
+        // Update the 'ccEmails' property in the storage object
+        storage.ccEmails = ccEmails;
+
+        // Write the updated storage object to the storage file
+        fs.writeFileSync(storageFile, JSON.stringify(storage));
+        
+        return "CC Emails updated successfully";
     } catch (error) {
         console.error(error);
         throw error;

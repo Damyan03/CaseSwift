@@ -5,7 +5,7 @@ function runPythonScript(data) {
     const subject = data.subject;
     const body = data.html;
     const recipients = data.email;
-    const ccRecipients = 'crimsonthedoge@gmail.com;';
+    const ccRecipients = data.ccEmail;
     const pythonProcess = spawn('python', ['sendMail.py', subject, body, recipients, ccRecipients]);
 
     console.log("Python script started");

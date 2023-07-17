@@ -20,7 +20,7 @@ def send_email(subject, body, recipients, cc_recipients):
     mail.CC = cc_recipients
 
     # Send the email
-    # mail.Send()
+    mail.Send()
 
 # Retrieve command-line arguments
 subject = sys.argv[1]

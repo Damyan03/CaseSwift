@@ -534,12 +534,20 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.pointer-events-none {
+  pointer-events: none;
+}
+
 .visible {
   visibility: visible;
 }
 
 .collapse {
   visibility: collapse;
+}
+
+.fixed {
+  position: fixed;
 }
 
 .sticky {
@@ -554,6 +562,14 @@ video {
   top: 0px;
 }
 
+.left-5 {
+  left: 1.25rem;
+}
+
+.top-5 {
+  top: 1.25rem;
+}
+
 .m-2 {
   margin: 0.5rem;
 }
@@ -561,6 +577,10 @@ video {
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
 }
 
 .ml-2 {
@@ -853,8 +873,13 @@ video {
   justify-content: center;
 }
 
-.height-max{
+.height-max-email{
   max-height: calc(100vh - 160px);
+  /* 100px to match whatever offsets you might need for headers etc */
+}
+
+.height-max-email-cc{
+  max-height: calc(100vh - 490px);
   /* 100px to match whatever offsets you might need for headers etc */
 }
 
@@ -917,11 +942,6 @@ video {
   .dark\:text-gray-400 {
     --tw-text-opacity: 1;
     color: rgb(156 163 175 / var(--tw-text-opacity));
-  }
-
-  .dark\:text-white {
-    --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity));
   }
 
   .dark\:placeholder-gray-400::-moz-placeholder {
