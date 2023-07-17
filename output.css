@@ -558,12 +558,12 @@ video {
   bottom: 0px;
 }
 
-.top-0 {
-  top: 0px;
-}
-
 .left-5 {
   left: 1.25rem;
+}
+
+.top-0 {
+  top: 0px;
 }
 
 .top-5 {

@@ -1,14 +1,16 @@
 const { exec, spawn } = require('child_process');
 module.exports = { runPythonScript };
+const path = require('path');
 
 function runPythonScript(data) {
+    console.log("Running python script")
     const subject = data.subject;
     const body = data.html;
     const recipients = data.email;
     const ccRecipients = data.ccEmail;
-    const pythonProcess = spawn('python', ['sendMail.py', subject, body, recipients, ccRecipients]);
 
-    console.log("Python script started");
+    const pythonScriptPath = path.join(__dirname, 'sendMail.py');
+    const pythonProcess = spawn('python', [pythonScriptPath, subject, body, recipients, ccRecipients]);
 
     pythonProcess.stdout.on('data', (data) => {
         console.log(`Python script output: ${data}`);
