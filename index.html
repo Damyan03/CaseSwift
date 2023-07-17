@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html class="min-h-40">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <title>Hello World!</title>
+    <link href="./output.css" rel="stylesheet">
+    <script src="./render.js" defer></script>
+</head>
+<body>
+<div class="flex h-screen bg-gray-800 flex-col overflow-hidden">
+    <div class="h-1/5 min-h-16 max-h-16 w-full center font-semibold">
+        <h1 class="text-4xl text-center text-gray-200">TimeSaver9000</h1>
+    </div>
+    <div class="flex-grow w-full">
+        <div class="flex w-full h-full flex-row">
+            <div class="flex w-full h-full flex-col">
+                <div class="center rounded w-full h-10 bg-blue-500">
+                    <button type="button" id="update-emails" class="text-white hover:font-semibold">Update</button>
+                </div>
+                <div class="flex justify-start items-center w-full flex-grow flex-col">
+                        <div id="emails" class="p-2 gap-2 flex justify-start items-center flex-grow h-full overflow-y-scroll overflow-x-hidden w-full flex-col height-max">
+                        <!--Emails-->
+                    </div>
+                    <div class="center w-full h-16 sticky bottom-0">
+                        <div id="add-email" class="center h-10 w-10 transition-all rounded hover:font-semibold bg-blue-500 cursor-pointer hover:bg-blue-400">
+                            <h2 class="text-white">+</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-700 w-full h-full sticky top-0">
+                <div class="center flex-col w-full h-auto gap-4 my-4">
+                    <div>
+                        <label class="block text-gray-200 text-sm font-bold" for="signiture">
+                            Signiture
+                        </label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="signiture" type="text" placeholder="Signiture">
+                    </div>
+                    <div class="w-auto h-auto bg-blue-500 hover:bg-blue-400 text-white p-2 rounded hover:font-semibold">
+                        <button type="button" id="save-info">Save</button>
+                    </div>
+                </div>
+                <div class="center flex-col p-2 gap-4">
+                    <div class="center flex-col">
+                        <label class="block text-sm font-medium text-gray-900 dark:text-white" for="file">Upload file</label>
+                        <input class="w-3/4 block text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400" accept=".csv" id="file" type="file">
+                    </div>
+                    <div class="flex items-center">
+                        <input id="afternoon" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="afternoon" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Afternoon bundle</label>
+                    </div>
+                    <div class="w-auto h-auto bg-emerald-500 text-white p-2 rounded hover:font-semibold m-2 center hover:bg-emerald-400">
+                        <button type="button" id="send-email">Send</button>
+                    </div>
+                    <div>
+                        <p id="status"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

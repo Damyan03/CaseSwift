@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.center {
+    @apply flex justify-center items-center;
+}
+.height-max{
+    max-height: calc(100vh - 160px); /* 100px to match whatever offsets you might need for headers etc */
+}

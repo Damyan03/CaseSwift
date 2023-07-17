@@ -1,0 +1,23 @@
+{
+  "name": "icoproject",
+  "version": "1.0.0",
+  "description": "Tool to help speed up task assignment",
+  "main": "main.js",
+  "scripts": {
+    "dev": "npx tailwindcss -i ./input.css -o ./output.css --watch",
+    "build": "npx tailwindcss -i ./input.css -o ./output.css",
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Damyan03",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^14.2.9",
+    "tailwindcss": "^3.3.2"
+  },
+  "dependencies": {
+    "@types/electron": "^1.6.10",
+    "child_process": "^1.0.2",
+    "nodemailer": "^6.9.3"
+  }
+}
